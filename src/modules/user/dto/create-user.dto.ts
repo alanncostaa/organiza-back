@@ -8,7 +8,7 @@ export class CreateUserDto {
   email: string;
 
   @IsString()
-  senha: string; // Lembre-se de criptografar a senha
+  senha: string;
 
   @IsString()
   telefone: string;

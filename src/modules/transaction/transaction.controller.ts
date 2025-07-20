@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
   Res,
@@ -41,7 +41,13 @@ export class TransactionController {
     return res.status(HttpStatus.OK).send(foundTransaction);
   }
 
-  @Patch(':id')
+  @Get('user/:iduser')
+  async findByUser(@Param('iduser') iduser: string, @Res() res: Response) {
+    const foundTransactions = await this.transactionService.findbyUser(iduser)
+    return res.status(HttpStatus.OK).send(foundTransactions);
+  }
+
+  @Put(':id')
   async update(
     @Param('id') id: string,
     @Body() updateTransactionDto: UpdateTransactionDto,

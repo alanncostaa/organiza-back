@@ -14,32 +14,39 @@ import { UpdateUserDto } from './dto/update-user.dto';
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}
+  @Post('forgot-password')
+  async forgotPassword(@Body() body: { email: string }) {
+    return this.userService.sendPasswordRecoveryEmail(body.email);
+  }
 
-  // Endpoint para criar um usuário
+  @Post('reset-password/:token')
+  async resetPassword(
+    @Param('token') token: string,
+    @Body() body: { newPassword: string }
+  ) {
+    return this.userService.resetPassword(token, body.newPassword);
+  }
+
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
 
-  // Endpoint para listar todos os usuários
   @Get()
   findAll() {
     return this.userService.findAll();
   }
 
-  // Endpoint para buscar um usuário específico por ID
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
   }
 
-  // Endpoint para atualizar um usuário
   @Put(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
   }
 
-  // Endpoint para deletar um usuário
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(id);

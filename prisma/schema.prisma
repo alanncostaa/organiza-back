@@ -21,7 +21,7 @@ enum TransactionType {
 model User {
   id   String          @id @default(uuid())
   nome      String
-  email     String
+  email     String     @unique
   senha     String
   telefone  String
   receita   Float
@@ -29,6 +29,8 @@ model User {
   d_nas     DateTime        
   createdAt DateTime        @default(now()) @map("created_at")
   updatedAt DateTime        @updatedAt @map("updated_at")
+  recoveryToken String?  
+  recoveryTokenExpires DateTime?
   transactions Transaction[]
 
   @@map("users")

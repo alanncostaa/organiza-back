@@ -6,7 +6,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { JwtPayload } from './jwt-payload.interface';
 import * as dotenv from 'dotenv';
 
-dotenv.config(); // Carrega variáveis de ambiente
+dotenv.config();
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -18,9 +18,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
 console.log('JWT_SECRET usado na validação:', process.env.JWT_SECRET);
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // Extração do token JWT
-      ignoreExpiration: false, // Não ignorar a expiração do token
-      secretOrKey: jwtSecret, // Chave secreta para validar o token
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false, 
+      secretOrKey: jwtSecret, 
     });
   }
 

@@ -25,6 +25,18 @@ export class TransactionService {
     return transactions;
   }
 
+  async findbyUser(iduser: string) {
+    const transactions = await this.prisma.transaction.findMany(
+      {
+        where: {
+          iduser: iduser
+        },
+        
+      }
+    );
+    return transactions;
+  }
+
   async findOne(id: string) {
     const foundTransaction = await this.prisma.transaction.findUnique({
       where: { id },
