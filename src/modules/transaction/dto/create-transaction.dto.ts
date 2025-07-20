@@ -22,4 +22,7 @@ export class CreateTransactionDto {
 
   @IsEnum(TransactionType)
   type: TransactionType;
+
+  @IsString({message: 'id_user must be a string'})
+  iduser: string;
 }

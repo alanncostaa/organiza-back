@@ -18,8 +18,26 @@ enum TransactionType {
   OUTCOME
 }
 
+model User {
+  id   String          @id @default(uuid())
+  nome      String
+  email     String
+  senha     String
+  telefone  String
+  receita   Float
+  meta      Float
+  d_nas     DateTime        
+  createdAt DateTime        @default(now()) @map("created_at")
+  updatedAt DateTime        @updatedAt @map("updated_at")
+  transactions Transaction[]
+
+  @@map("users")
+}
+
 model Transaction {
   id        String          @id @default(uuid())
+  user      User            @relation(fields: [iduser], references: [id])
+  iduser    String          
   title     String
   price     Float
   category  String
