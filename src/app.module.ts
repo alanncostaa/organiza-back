@@ -13,8 +13,8 @@ import { AuthModule } from './modules/auth/auth.module';
         port: 587,
         secure: false,
         auth: {
-          user: '929ab9002@smtp-brevo.com',
-          pass: 'PmNxAgXa8cbOjRvh'
+          user: process.env.USER_SMTP,
+          pass: process.env.PAS_SMTP
         },
       },
       defaults: {

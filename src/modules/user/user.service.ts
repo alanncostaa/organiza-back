@@ -30,7 +30,7 @@ export class UserService {
     });
 
     // Envia o email com o link de recuperação
-    const recoveryLink = `http://localhost:3000/reset-password?token=${recoveryToken}`;
+    const recoveryLink = `https://organiza-front.vercel.app/reset-password?token=${recoveryToken}`;
     await this.mailerService.sendMail({
       to: email,
       subject: 'Recuperação de Senha',
